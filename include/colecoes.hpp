@@ -14,16 +14,17 @@ class Catalogo {
     std::map<IdSensor, T> itens_;
 public:
     bool inserir(const IdSensor& id, const T& item) {
-        // TODO 01: inserir somente quando a chave ainda não existir.
-        (void)id;
-        (void)item;
-        return false;
-    }
-    const T* buscar(const IdSensor& id) const {
-        // TODO 01: localizar sem criar entrada; nullptr indica ausência.
-        (void)id;
+    auto resultado = itens_.emplace(id, item);
+    return resultado.second;
+}
+
+T* buscar(const IdSensor& id) {
+    auto it = itens_.find(id);
+    if (it == itens_.end()) {
         return nullptr;
     }
+    return &(it->second);
+}
     bool remover(const IdSensor& id) {
         // TODO 02: true somente quando uma entrada for removida.
         (void)id;

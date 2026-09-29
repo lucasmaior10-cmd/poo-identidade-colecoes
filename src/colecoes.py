@@ -16,13 +16,14 @@ class Catalogo(Generic[T]):
     def __init__(self):
         self._itens: dict[IdSensor, T] = {}
 
-    def inserir(self, id: IdSensor, item: T) -> bool:
-        # TODO 01: recusar duplicata e preservar o primeiro item.
-        return False
+    def inserir(self, id_sensor, item) -> bool:
+        if id_sensor in self._itens:
+            return False
+        self._itens[id_sensor] = item
+        return True
 
-    def buscar(self, id: IdSensor) -> T | None:
-        # TODO 01: consultar sem criar entrada; None indica ausência.
-        return None
+    def buscar(self, id_sensor):
+        return self._itens.get(id_sensor, None)
 
     def remover(self, id: IdSensor) -> bool:
         # TODO 02: True somente quando uma entrada for removida.
