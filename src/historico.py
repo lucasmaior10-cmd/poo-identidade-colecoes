@@ -13,10 +13,9 @@ class Historico:
     def quantidade(self):
         return len(self._leituras)
 
-    def ultimas(self, limite: int) -> list[Medicao]:
-        # Fornecido: C++ usa size_t; Python precisa rejeitar negativos.
+    def ultimas(self, limite: int) -> list:
         if limite < 0:
-            raise ValueError("limite deve ser nao negativo")
-        # TODO 02: até limite leituras em nova lista, na ordem de chegada.
-        # Não remover elementos do histórico original.
-        return []
+            raise ValueError()
+        if limite == 0 or not self._leituras:
+            return []
+        return self._leituras[-limite:]

@@ -25,8 +25,10 @@ class Catalogo(Generic[T]):
     def buscar(self, id_sensor):
         return self._itens.get(id_sensor, None)
 
-    def remover(self, id: IdSensor) -> bool:
-        # TODO 02: True somente quando uma entrada for removida.
+    def remover(self, id_sensor) -> bool:
+        if id_sensor in self._itens:
+            del self._itens[id_sensor]
+            return True
         return False
 
     def quantidade(self):

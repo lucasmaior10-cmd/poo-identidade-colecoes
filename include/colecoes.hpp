@@ -26,10 +26,8 @@ T* buscar(const IdSensor& id) {
     return &(it->second);
 }
     bool remover(const IdSensor& id) {
-        // TODO 02: true somente quando uma entrada for removida.
-        (void)id;
-        return false;
-    }
+    return itens_.erase(id) > 0;
+}
     std::size_t quantidade() const { return itens_.size(); }
     std::set<IdSensor> ids() const {
         std::set<IdSensor> resultado;
